@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{% block title %}Cake Shop{% endblock %}</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/logo.svg') }}" type="image/svg+xml">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="/">
+                <span class="logo-emoji">🍰</span>
+                <span class="brand-title">Sweet Haven</span>
+            </a>
+            <nav class="site-nav">
+                <a href="/">เมนู</a>
+                <a href="/append" class="btn btn-small">➕ เพิ่มเมนู</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">&copy; <span id="year"></span> Sweet Haven — เค้กทำด้วยรัก</div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('img.cake-img').forEach(function (img) {
+                img.onerror = function () {
+                    this.src = 'https://picsum.photos/seed/placeholder/600/400';
+                    this.classList.add('img-fallback');
+                };
+            });
+        });
+    </script>
+
+</body>
+
+</html>
